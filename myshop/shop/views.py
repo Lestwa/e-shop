@@ -4,10 +4,10 @@ from .models import Product, Category
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    product = Product.objects.filter(avaiable=True)
+    products = Product.objects.filter(available=True)
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        products = product.filter(category=category)
+        products = products.filter(category=category)
     return render(request,
                   'shop/product/list.html',
                   {'category': category,
