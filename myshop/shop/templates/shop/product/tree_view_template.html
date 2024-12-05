@@ -1,0 +1,27 @@
+<!-- <ul>
+    {% for parents in categories %}
+        <li>
+            {% if category.has_children %}
+                <a href="#">{{ category.name }}</a>
+
+                    
+                {% include "shop/product/tree_view_template.html" with category=category.parents %}
+                    
+
+            {% endif %}
+        </li>
+    {% endfor %}
+
+</ul> -->
+
+<li> {{category.name}}
+    {%if category.parent_id == category.id %}
+        <ul>
+         {%for ch in category.parent %}
+              {%with category=ch template_name="shop/product/tree_view_template.html" %}
+                   {%include template_name%}
+              {%endwith%}
+         {%endfor%}
+         </ul>
+    {%endif%}
+</li>
